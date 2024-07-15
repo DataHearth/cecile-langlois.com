@@ -14,6 +14,7 @@
             typescript
             nodePackages_latest.eslint
             nodePackages_latest.prettier
+            wrangler
           ];
         };
       });

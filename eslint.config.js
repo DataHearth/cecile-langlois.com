@@ -14,6 +14,7 @@ export default tseslint.config(
       },
       parserOptions: {
         project: 'tsconfig.json',
+        tsconfigRootDir: __dirname,
         extraFileExtensions: ['.svelte']
       },
       parser: tseslint.parser
@@ -37,4 +38,3 @@ export default tseslint.config(
   pluginJs.configs.recommended,
   eslintConfigPrettier
 );
-
