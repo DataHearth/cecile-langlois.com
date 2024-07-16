@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cecile-langlois.com/sitemap.xml
