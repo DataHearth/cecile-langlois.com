@@ -1,9 +1,10 @@
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import eslintPluginSvelte from 'eslint-plugin-svelte';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import esPlgSvelte from 'eslint-plugin-svelte';
+import esCfgPrettier from 'eslint-config-prettier';
 import svelteParser from 'svelte-eslint-parser';
 import globals from 'globals';
+import esPlgDrizzle from 'eslint-plugin-drizzle';
 
 export default tseslint.config(
   {
@@ -23,7 +24,7 @@ export default tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        parser: '@typescript-eslint/parser'
+        parser: tseslint.parser
       },
       parser: svelteParser
     },
@@ -33,8 +34,9 @@ export default tseslint.config(
     ignores: ['build/', '.svelte-kit/', 'dist/', '*.config.js', '.direnv', '.env', '.env.*']
   },
   ...tseslint.configs.recommended,
-  ...eslintPluginSvelte.configs['flat/recommended'],
-  ...eslintPluginSvelte.configs['flat/prettier'],
+  ...esPlgSvelte.configs['flat/recommended'],
+  ...esPlgSvelte.configs['flat/prettier'],
   pluginJs.configs.recommended,
-  eslintConfigPrettier
+  esCfgPrettier,
+  esPlgDrizzle.config.recommended
 );

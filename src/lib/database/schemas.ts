@@ -1,26 +1,23 @@
-import {
-  boolean,
-  pgTable,
-  serial,
-  text,
-  timestamp,
-  varchar,
-  real,
-  json
-} from 'drizzle-orm/pg-core';
+import { text, real, sqliteTable, int } from 'drizzle-orm/sqlite-core';
 
-export const activities = pgTable('activites', {
-  id: serial('id').primaryKey(),
-  label: varchar('label', { length: 256 }).notNull(),
+export const activities = sqliteTable('activities', {
+  id: int('id').primaryKey(),
+  label: text('label', { length: 256 }).notNull(),
   description: text('description'),
-  date: timestamp('timestamp'),
-  retired: boolean('retired').default(false),
+  date: int('timestamp', {
+    mode: 'timestamp'
+  }),
+  retired: int('retired', { mode: 'boolean' }).default(false),
   pricing: real('pricing'),
-  pictures: json('pictures').$type<{ label: string; link: string }[]>().default([])
+  pictures: text('pictures', {
+    mode: 'json'
+  })
+    .$type<{ label: string; link: string }[]>()
+    .default([])
 });
 
-export const aboutPictures = pgTable('about-pictures', {
-  id: serial('id').primaryKey(),
-  label: varchar('label', { length: 256 }).notNull(),
+export const aboutPictures = sqliteTable('about-pictures', {
+  id: int('id').primaryKey(),
+  label: text('label', { length: 256 }).notNull(),
   link: text('link').notNull()
 });
