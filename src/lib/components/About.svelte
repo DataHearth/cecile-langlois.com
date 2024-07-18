@@ -1,13 +1,16 @@
 <script lang="ts">
   // @ts-expect-error handled by vite
   import MyImage from '../../../static/hero.jpg?enhanced';
+  // @ts-expect-error handled by vite
+  import MyImageBis from '../../../static/favicon.png?enhanced';
+  import Carousel from './Carousel.svelte';
   const galleryImages = [
     {
       link: MyImage,
       label: '1'
     },
     {
-      link: MyImage,
+      link: MyImageBis,
       label: '1'
     },
     {
@@ -23,34 +26,15 @@
       label: '1'
     }
   ];
-
-  let activeImage = galleryImages[0];
 </script>
 
 <div class="relative" id="about">
   <div class="mx-auto max-w-7xl lg:flex lg:justify-between lg:px-8 xl:justify-end">
     <div
-      class="my-10 items-center justify-center lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2"
+      class="md:my-10 lg:flex lg:w-1/2 lg:shrink lg:grow-0 lg:items-center lg:justify-center xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2"
     >
       <div class="relative h-80 px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
-        <div class="grid gap-4">
-          <enhanced:img
-            class="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
-            src={activeImage.link}
-            alt={activeImage.label}
-          />
-
-          <div class="grid grid-cols-5 gap-4">
-            {#each galleryImages as i}
-              <enhanced:img
-                src={i.link}
-                class="max-w-full cursor-pointer rounded-lg object-cover object-center"
-                alt={i.label}
-                loading="lazy"
-              />
-            {/each}
-          </div>
-        </div>
+        <Carousel images={galleryImages} />
       </div>
     </div>
     <div class="px-6 md:mt-52 lg:contents">
