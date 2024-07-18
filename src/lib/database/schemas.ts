@@ -15,9 +15,3 @@ export const activities = sqliteTable('activities', {
     .$type<{ label: string; link: string }[]>()
     .default([])
 });
-
-export const aboutPictures = sqliteTable('about-pictures', {
-  id: int('id').primaryKey(),
-  label: text('label', { length: 256 }).notNull(),
-  link: text('link').notNull()
-});

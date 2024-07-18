@@ -15,11 +15,7 @@
 <div class="min-h-screen w-full">
   <Hero />
 
-  {#await data.aboutPictures}
-    <About galleryImages={null} />
-  {:then pics}
-    <About galleryImages={pics} />
-  {/await}
+  <About />
 
   <Activities activities={data.activities} />
 

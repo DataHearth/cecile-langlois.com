@@ -1,10 +1,30 @@
 <script lang="ts">
-  import Image from 'lucide-svelte/icons/image';
-  import { aboutPictures } from '$lib/database/schemas';
+  // @ts-expect-error handled by vite
+  import MyImage from '../../../static/hero.jpg?enhanced';
+  const galleryImages = [
+    {
+      link: MyImage,
+      label: '1'
+    },
+    {
+      link: MyImage,
+      label: '1'
+    },
+    {
+      link: MyImage,
+      label: '1'
+    },
+    {
+      link: MyImage,
+      label: '1'
+    },
+    {
+      link: MyImage,
+      label: '1'
+    }
+  ];
 
-  export let galleryImages: Array<typeof aboutPictures.$inferSelect> | null;
-
-  let activeImage = galleryImages ? galleryImages[0] : null;
+  let activeImage = galleryImages[0];
 </script>
 
 <div class="relative" id="about">
@@ -14,47 +34,21 @@
     >
       <div class="relative h-80 px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
         <div class="grid gap-4">
-          {#if activeImage}
-            <img
-              class="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
-              src={activeImage.link}
-              alt={activeImage.label}
-            />
-          {:else}
-            <div role="status" class="animate-pulse justify-center md:flex md:items-center">
-              <div
-                class="flex h-48 w-full items-center justify-center rounded bg-gray-300 sm:w-96 dark:bg-gray-700"
-              >
-                <Image class="h-10 w-10 text-gray-200 dark:text-gray-600" aria-hidden="true" />
-              </div>
-              <span class="sr-only">Loading...</span>
-            </div>
-          {/if}
+          <enhanced:img
+            class="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
+            src={activeImage.link}
+            alt={activeImage.label}
+          />
 
           <div class="grid grid-cols-5 gap-4">
-            {#if galleryImages && galleryImages.length > 0}
-              {#each galleryImages as i (i.id)}
-                <img
-                  src={i.link}
-                  class="max-w-full cursor-pointer rounded-lg object-cover object-center"
-                  alt={i.label}
-                />
-              {/each}
-            {:else}
-              {#each Array(5) as _}
-                <div
-                  role="status"
-                  class="animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0 rtl:space-x-reverse"
-                >
-                  <div
-                    class="flex h-48 w-full items-center justify-center rounded bg-gray-300 sm:w-96 dark:bg-gray-700"
-                  >
-                    <Image class="h-10 w-10 text-gray-200 dark:text-gray-600" aria-hidden="true" />
-                  </div>
-                  <span class="sr-only">Loading...</span>
-                </div>
-              {/each}
-            {/if}
+            {#each galleryImages as i}
+              <enhanced:img
+                src={i.link}
+                class="max-w-full cursor-pointer rounded-lg object-cover object-center"
+                alt={i.label}
+                loading="lazy"
+              />
+            {/each}
           </div>
         </div>
       </div>

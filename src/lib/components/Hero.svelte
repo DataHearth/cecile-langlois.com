@@ -3,6 +3,7 @@
     src="/static/hero.jpg"
     alt="Randonnée illustrative"
     class="absolute inset-0 -z-10 h-full w-full object-cover"
+    fetchPriority="high"
   />
   <div
     class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
