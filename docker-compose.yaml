@@ -5,6 +5,7 @@ services:
     image: node:22
     working_dir: /app
     network_mode: host
+    user: "${UID}:${GID}"
     volumes:
       - ${PWD}:/app
     command: npm run wrangler-dev
@@ -13,6 +14,7 @@ services:
     image: node:22
     working_dir: /app
     network_mode: host
+    user: "${UID}:${GID}"
     volumes:
       - ${PWD}:/app
     command: npm run sveltekit-dev
