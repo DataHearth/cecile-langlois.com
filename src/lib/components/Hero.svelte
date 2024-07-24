@@ -1,9 +1,9 @@
-<div class="relative isolate overflow-hidden pt-14 lg:h-screen">
+<div class="relative isolate overflow-hidden pt-14 lg:h-screen lg:pt-32">
   <enhanced:img
     src="/static/hero.jpg"
+    sizes="(min-width:1024px) 100vw, (min-width:768px) 100vw, (min-width:640px) 100vw"
     alt="Randonnée illustrative"
     class="absolute inset-0 -z-10 h-full w-full object-cover"
-    fetchPriority="high"
   />
   <div
     class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
