@@ -3,15 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "wrangler-dev": "wrangler pages dev",
-    "sveltekit-dev": "vite dev",
+    "dev:wrangler": "nodemon -w src -w drizzle -w static --exec 'wrangler pages dev --port 5173'",
+    "dev:build": "vite build --watch",
+    "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
-    "migrate": "drizzle-kit migrate --config local.drizzle.config.ts"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate --config local.drizzle.config.ts"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",
@@ -47,6 +49,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.4.1",
+    "@auth/sveltekit": "^1.4.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.32.0",
     "tailwind-merge": "^2.4.0"

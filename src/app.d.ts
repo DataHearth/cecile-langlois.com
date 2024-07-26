@@ -1,4 +1,4 @@
-import type { D1Database } from '@cloudflare/workers-types';
+import type { D1Database, CacheStorage, Cache } from '@cloudflare/workers-types';
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
 
 // See https://kit.svelte.dev/docs/types#app
@@ -15,6 +15,10 @@ declare global {
       env: {
         DB: D1Database;
       };
+      context: {
+        waitUntil(promise: Promise<any>): void;
+      };
+      caches: CacheStorage & { default: Cache };
     }
   }
 }

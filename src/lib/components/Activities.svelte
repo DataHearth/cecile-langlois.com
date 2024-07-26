@@ -6,7 +6,10 @@
   export let activities: Promise<Array<typeof activitiesSchema.$inferSelect>>;
 </script>
 
-<section class="mt-10 flex flex-col items-center justify-center" id="activities">
+<section
+  class="mt-10 flex min-h-fit flex-col items-center justify-center border border-y-gray-200 pt-16"
+  id="activities"
+>
   <h2 class="text-5xl font-bold">Mes sorties</h2>
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
     <div

@@ -2,10 +2,7 @@
   import Send from 'lucide-svelte/icons/send';
 </script>
 
-<div
-  class="flex flex-col items-center justify-center gap-y-8 border border-t-gray-200 pt-10 shadow-xl"
-  id="contact"
->
+<div class="flex flex-col items-center justify-center gap-y-8 pt-10 shadow-xl" id="contact">
   <h2 class="text-5xl font-bold">Contact</h2>
 
   <div class="flex w-full flex-col items-center gap-y-3">
