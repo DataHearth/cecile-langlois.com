@@ -14,7 +14,7 @@
     <div class="mt-8 md:order-1 md:mt-0">
       <p class="text-center text-xs leading-5 text-gray-500">
         &copy; 2024 Cécile langlois - Made by <a
-          class="text-blue-400 underline"
+          class="text-blue-800 underline"
           href="https://gitea.antoine-langlois.net/datahearth">Antoine Langlois</a
         >
       </p>

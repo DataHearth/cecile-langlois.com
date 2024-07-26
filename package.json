@@ -13,7 +13,8 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate --config local.drizzle.config.ts"
+    "db:migrate:local": "drizzle-kit migrate --config local.drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",

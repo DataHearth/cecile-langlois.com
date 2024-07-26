@@ -4,13 +4,10 @@
   import MailCheck from 'lucide-svelte/icons/mail-check';
   import Mail from 'lucide-svelte/icons/mail';
   import Send from 'lucide-svelte/icons/send';
-  import CircleAlert from 'lucide-svelte/icons/circle-alert';
   import X from 'lucide-svelte/icons/x';
   import { cn } from '$lib/utils';
-  import { SignOut } from '@auth/sveltekit/components';
   import { page } from '$app/stores';
   import { signIn, signOut } from '@auth/sveltekit/client';
-  import { notification, notificationType } from '$lib/stores';
 
   let openMenu = false;
   let openAuth = false;
@@ -80,7 +77,6 @@
               !openAuth && 'hidden'
             )}
           >
-            <input type="hidden" name="redirect" value={false} />
             <div class="flex rounded-md shadow-sm">
               <div class="relative flex flex-grow items-stretch focus-within:z-10">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -89,7 +85,7 @@
                 <input
                   type="email"
                   name="email"
-                  id="email"
+                  id="email-desktop"
                   required
                   bind:value={email}
                   aria-required="true"
@@ -99,12 +95,7 @@
               </div>
               <button
                 class="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-green-200"
-                on:click={() => {
-                  signIn('sendgrid', {
-                    email,
-                    redirect: false
-                  });
-                }}
+                on:click={() => signIn('sendgrid', { email })}
               >
                 <Send class="-ml-0.5 h-5 w-5 text-gray-400" aria-hidden="true" />
               </button>
@@ -185,7 +176,7 @@
                       <input
                         type="email"
                         name="email"
-                        id="email"
+                        id="email-mobile"
                         bind:value={email}
                         required
                         class="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
