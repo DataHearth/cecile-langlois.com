@@ -23,7 +23,10 @@ jobs:
       - name: Build SvelteKit app
         run: npm run build
         env:
-          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_SENDGRID_API_KEY: ${{ secrets.AUTH_SENDGRID_API_KEY }}
+          AUTH_SENDGRID_TEMPLATE_ID: ${{ secrets.AUTH_SENDGRID_TEMPLATE_ID }}
+
 
       - name: Deploy to Cloudflare pages
         uses: cloudflare/wrangler-action@v3
