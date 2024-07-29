@@ -1,47 +1,69 @@
 <script lang="ts">
-  import ChevronLeft from 'lucide-svelte/icons/chevron-left';
-  import ChevronRight from 'lucide-svelte/icons/chevron-right';
+  import { cn } from '$lib/utils';
+  import { ChevronLeft, ChevronRight } from 'lucide-svelte';
+  import { slide } from 'svelte/transition';
 
-  export let images: Array<{ link: string; label: string }> = [];
+  export let images: { label: string; link: any }[];
 
-  let currentIndex = 0;
-
-  const showNextImage = () => {
-    currentIndex = (currentIndex + 1) % images.length;
-  };
-  const showPreviousImage = () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-  };
+  let current = 0;
 </script>
 
-<div class="relative h-full w-full">
-  <enhanced:img
-    src={images[currentIndex].link}
-    alt={images[currentIndex].label}
-    sizes="(min-width: 640px) 100%"
-    class="h-full w-full rounded-lg object-contain object-center lg:max-h-[620px]"
-  />
+<div class="relative w-full">
+  <div class="relative h-[340px] overflow-hidden rounded-lg md:h-[480px]">
+    {#each images as image, i (i)}
+      {#if current === i}
+        <enhanced:img
+          src={image.link}
+          class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
+          alt={image.label}
+          sizes="(min-width: 640px) 100%"
+          transition:slide
+        />
+      {/if}
+    {/each}
+  </div>
+
   <button
-    class="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 p-2 text-white"
-    on:click={showPreviousImage}
-    aria-label="Image précédente"
+    type="button"
+    class="group absolute left-0 top-0 z-10 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+    on:click={() => (current = (current - 1 + images.length) % images.length)}
   >
-    <span class="sr-only">Image précédente</span>
-    <ChevronLeft />
+    <span
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
+    >
+      <ChevronLeft class="h-4 w-4 text-white dark:text-gray-800" aria-hidden="true" />
+      <span class="hidden">Image précédente</span>
+    </span>
   </button>
   <button
-    class="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 p-2 text-white"
-    on:click={showNextImage}
-    aria-label="Image suivante"
+    type="button"
+    class="group absolute right-0 top-0 z-10 flex h-full items-center justify-center px-4 focus:outline-none"
+    on:click={() => (current = (current + 1) % images.length)}
   >
-    <span class="sr-only">Image suivante</span>
-    <ChevronRight />
+    <span
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full group-hover:bg-white/50 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60"
+    >
+      <ChevronRight class="h-4 w-4 text-white dark:text-gray-800" aria-hidden="true" />
+      <span class="hidden">Image suivante</span>
+    </span>
   </button>
 </div>
+
 <div class="mt-4 grid grid-cols-5 gap-4">
-  {#each images as image, index}
-    <button on:click={() => (currentIndex = index)}>
-      <enhanced:img src={image.link} alt={image.label} class="rounded-lg object-cover" />
+  {#each images as image, i}
+    <button
+      on:click={() => (current = i)}
+      class={cn(
+        'h-auto w-full rounded-lg md:h-20',
+        current === i && 'shadow-xl outline outline-2 outline-blue-400'
+      )}
+    >
+      <enhanced:img
+        src={image.link}
+        alt={image.label}
+        class="h-full w-full rounded-lg object-cover"
+        sizes="(min-width: 640px) 100%"
+      />
     </button>
   {/each}
 </div>
