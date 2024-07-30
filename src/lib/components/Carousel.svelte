@@ -3,20 +3,20 @@
   import { ChevronLeft, ChevronRight } from 'lucide-svelte';
   import { slide } from 'svelte/transition';
 
-  export let images: { label: string; link: any }[];
+  export let images: any[];
 
   let current = 0;
 </script>
 
 <div class="relative w-full">
   <div class="relative h-[340px] overflow-hidden rounded-lg md:h-[480px]">
-    {#each images as image, i (i)}
+    {#each images as [_, module], i (i)}
       {#if current === i}
         <enhanced:img
-          src={image.link}
+          src={module.default}
           class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
-          alt={image.label}
-          sizes="(min-width: 640px) 100%"
+          alt="Carousel active"
+          sizes="(min-width: 1024px) 100%, (min-width: 768px): 100%, (min-width: 640px) 100%, (min-width: 360px) 100%"
           transition:slide
         />
       {/if}
@@ -29,11 +29,11 @@
     on:click={() => (current = (current - 1 + images.length) % images.length)}
   >
     <span
-      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 group-hover:ring-2 group-hover:ring-white group-hover:ring-opacity-30"
     >
-      <ChevronLeft class="h-4 w-4 text-white dark:text-gray-800" aria-hidden="true" />
-      <span class="hidden">Image précédente</span>
+      <ChevronLeft class="h-4 w-4 text-white" aria-hidden="true" />
     </span>
+    <span class="sr-only">Image précédente</span>
   </button>
   <button
     type="button"
@@ -41,16 +41,16 @@
     on:click={() => (current = (current + 1) % images.length)}
   >
     <span
-      class="inline-flex h-10 w-10 items-center justify-center rounded-full group-hover:bg-white/50 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 group-hover:ring-2 group-hover:ring-white group-hover:ring-opacity-30"
     >
-      <ChevronRight class="h-4 w-4 text-white dark:text-gray-800" aria-hidden="true" />
-      <span class="hidden">Image suivante</span>
+      <ChevronRight class="h-4 w-4 text-white" aria-hidden="true" />
     </span>
+    <span class="sr-only">Image suivante</span>
   </button>
 </div>
 
 <div class="mt-4 grid grid-cols-5 gap-4">
-  {#each images as image, i}
+  {#each images as [_, module], i (i)}
     <button
       on:click={() => (current = i)}
       class={cn(
@@ -59,10 +59,10 @@
       )}
     >
       <enhanced:img
-        src={image.link}
-        alt={image.label}
+        src={module.default}
+        alt={`Carousel n°${i}`}
         class="h-full w-full rounded-lg object-cover"
-        sizes="(min-width: 640px) 100%"
+        sizes="(min-width: 1024px) 100%, (min-width: 768px): 100%, (min-width: 640px) 100%, (min-width: 360px) 100%"
       />
     </button>
   {/each}

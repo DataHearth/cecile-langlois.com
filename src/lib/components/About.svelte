@@ -1,30 +1,11 @@
 <script lang="ts">
-  import Img from '../../../static/hero.jpg?enhanced';
-  import ImgBis from '../../../static/favicon.png?enhanced';
-  import Carousel from './Carousel.svelte';
-
-  const galleryImages = [
-    {
-      link: ImgBis,
-      label: '5'
-    },
-    {
-      link: Img,
-      label: '1'
-    },
-    {
-      link: Img,
-      label: '2'
-    },
-    {
-      link: Img,
-      label: '3'
-    },
-    {
-      link: Img,
-      label: '4'
+  const carouselImgs = import.meta.glob('../../../static/carousel/*.{jpg,png}', {
+    eager: true,
+    query: {
+      enhanced: true
     }
-  ];
+  });
+  import Carousel from './Carousel.svelte';
 </script>
 
 <div class="relative" id="about">
@@ -33,7 +14,7 @@
       class="my-20 items-center justify-center md:my-10 lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2"
     >
       <div class="relative h-80 px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
-        <Carousel images={galleryImages} />
+        <Carousel images={Object.entries(carouselImgs)} />
       </div>
     </div>
     <div class="px-6 md:mt-52 lg:contents">
