@@ -1,4 +1,8 @@
-import { AUTH_SENDGRID_API_KEY, AUTH_SECRET, AUTH_SENDGRID_TEMPLATE_ID } from '$env/static/private';
+import {
+  PRIVATE_SENDGRID_API_KEY,
+  PRIVATE_AUTH_SECRET,
+  PRIVATE_SENDGRID_TEMPLATE_ID
+} from '$env/static/private';
 import {
   accounts,
   authenticators,
@@ -21,8 +25,8 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => ({
   providers: [
     Sendgrid({
       id: 'sendgrid',
-      apiKey: AUTH_SENDGRID_API_KEY,
-      from: 'Cécile Langlois <>',
+      apiKey: PRIVATE_SENDGRID_API_KEY,
+      from: 'Cécile Langlois <authentication@cecile-langlois.com>',
       maxAge: 60 * 15,
       sendVerificationRequest: async (params) => {
         const { identifier: to, provider, url, expires } = params;
@@ -51,7 +55,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => ({
             ],
             from: { email: 'authentication@cecile-langlois.com', name: 'Cécile Langlois' },
             subject: 'Your Example Order Confirmation',
-            template_id: AUTH_SENDGRID_TEMPLATE_ID
+            template_id: PRIVATE_SENDGRID_TEMPLATE_ID
           })
         });
 
@@ -59,7 +63,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => ({
       }
     })
   ],
-  secret: AUTH_SECRET,
+  secret: PRIVATE_AUTH_SECRET,
   trustHost: true,
   pages: {
     verifyRequest: '/mail-auth'
