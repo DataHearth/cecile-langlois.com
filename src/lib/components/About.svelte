@@ -1,10 +1,4 @@
 <script lang="ts">
-  const carouselImgs = import.meta.glob('../../../static/carousel/*.{jpg,png}', {
-    eager: true,
-    query: {
-      enhanced: true
-    }
-  });
   import Carousel from './Carousel.svelte';
 </script>
 
@@ -14,7 +8,7 @@
       class="my-20 items-center justify-center md:my-10 lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2"
     >
       <div class="relative h-80 px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
-        <Carousel images={Object.entries(carouselImgs)} />
+        <Carousel />
       </div>
     </div>
     <div class="px-6 md:mt-52 lg:contents">
