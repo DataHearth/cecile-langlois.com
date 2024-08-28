@@ -3,7 +3,7 @@
     src="../../../static/hero.jpg?w=300;880;1040;1210;1430;1470;1680;1740;1870;2000;2048"
     sizes="100vw"
     alt="Randonnée illustrative"
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    class="aspect-1 absolute inset-0 -z-10 h-full w-full object-cover object-center"
   />
   <div
     class="mx-auto mb-6 mt-20 flex max-w-4xl flex-col items-center justify-center gap-y-5 rounded-md bg-white py-10 text-center text-gray-900 opacity-90 md:mx-5 md:p-16 lg:mx-auto lg:mt-40 lg:h-fit"
