@@ -1,19 +1,40 @@
 <script lang="ts">
-  import Carousel from './Carousel.svelte';
+  import { Carousel } from 'flowbite-svelte';
+
+  const images = [
+    {
+      alt: 'XXX',
+      src: '/hero.jpg'
+    },
+    {
+      alt: 'XXX',
+      src: 'https://media.githubusercontent.com/media/DataHearth/cecile-langlois.com/main/static/carousel/bernd-dittrich-qDkOkUSf3dc-unsplash.jpg'
+    },
+    {
+      alt: 'XXX',
+      src: '/hero.jpg'
+    },
+    {
+      alt: 'XXX',
+      src: '/hero.jpg'
+    }
+  ];
 </script>
 
-<div class="relative" id="about">
+<div class="relative pb-20 md:pb-10 lg:py-28" id="about">
   <div class="mx-auto max-w-7xl lg:flex lg:justify-between lg:px-8 xl:justify-end">
     <div
       class="my-20 items-center justify-center md:my-10 lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2"
     >
-      <div class="relative h-80 px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
-        <Carousel />
+      <div class="relative px-10 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
+        <Carousel {images} let:Indicators duration={4000}>
+          <Indicators />
+        </Carousel>
       </div>
     </div>
-    <div class="px-6 md:mt-52 lg:contents">
+    <div class="px-6 lg:contents">
       <div
-        class="mx-auto max-w-2xl pb-24 pt-16 text-center sm:pb-32 sm:pt-20 md:text-left lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none lg:pt-32 xl:w-1/2"
+        class="mx-auto max-w-2xl text-center md:text-left lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none xl:w-1/2"
       >
         <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           À propos de moi

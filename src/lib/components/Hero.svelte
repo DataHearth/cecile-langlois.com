@@ -1,15 +1,20 @@
-<div class="relative isolate overflow-hidden pt-14 lg:h-screen lg:pt-32">
-  <enhanced:img
-    src="../../../static/hero.jpg?w=300;880;1040;1210;1430;1470;1680;1740;1870;2000;2048"
-    sizes="100vw"
+<div class="relative isolate flex h-screen items-center justify-center overflow-hidden">
+  <img
+    srcset="https://assets.cecile-langlois.com/hero-400w.avif 400w, https://assets.cecile-langlois.com/hero-600w.avif 600w, https://assets.cecile-langlois.com/hero-800w.avif 800w, https://assets.cecile-langlois.com/hero-1000w.avif 1000w, https://assets.cecile-langlois.com/hero-1200w.avif 1200w, https://assets.cecile-langlois.com/hero-1600w.avif 1600w, https://assets.cecile-langlois.com/hero-2000w.avif 2000w"
+    sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1600px) 1600px, (min-width: 1601px) 2000px"
+    src="https://assets.cecile-langlois.com/hero.jpgx"
     alt="Randonnée illustrative"
-    class="aspect-1 absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    width="6220"
+    height="4147"
+    class="absolute inset-0 -z-10 aspect-1 h-full w-full object-cover object-center"
   />
   <div
-    class="mx-auto mb-6 mt-20 flex max-w-4xl flex-col items-center justify-center gap-y-5 rounded-md bg-white py-10 text-center text-gray-900 opacity-90 md:mx-5 md:p-16 lg:mx-auto lg:mt-40 lg:h-fit"
+    class="mx-5 flex max-w-4xl flex-col items-center justify-center gap-y-5 rounded-md bg-white px-5 py-10 text-center text-gray-900 opacity-90 md:mx-10 md:p-16 lg:h-fit"
   >
-    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">Cécile Langlois</h1>
-    <h2 class="text-3xl font-bold tracking-tight text-slate-800 sm:text-5xl">
+    <h1 class="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+      Cécile Langlois
+    </h1>
+    <h2 class="text-3xl font-bold tracking-tight text-slate-800 md:text-4xl lg:text-5xl">
       Accompagnatrice en montagne
     </h2>
     <p class="mt-6 text-lg leading-8">

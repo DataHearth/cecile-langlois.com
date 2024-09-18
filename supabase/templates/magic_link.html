@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion à https://cecile-langlois.com</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .email-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 10px 0;
+      }
+      .header img {
+        max-width: 150px;
+        border-radius: 50%;
+      }
+      .content {
+        padding: 20px;
+        color: #333333;
+      }
+      .content h1 {
+        font-size: 24px;
+        color: #333333;
+      }
+      .content p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .magic-link-button {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #007bff;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #777777;
+      }
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .truncate-url {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 600px) {
+        .email-container {
+          padding: 10px;
+        }
+        .content h1,
+        .content p,
+        .footer p {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <img src="https://assets.cecile-langlois.com/profile.webp" alt="Logo de Cécile Langlois" />
+      </div>
+      <div class="content">
+        <h1>Bonjour,</h1>
+        <p>
+          Nous avons reçu une demande de connexion à votre compte. Cliquez sur le bouton ci-dessous
+          pour vous connecter en toute sécurité :
+        </p>
+        <a
+          href="{{ .SiteURL }}/sign-in/validate?token_hash={{ .TokenHash }}&type=magiclink"
+          target="_blank"
+          class="magic-link-button"
+        >
+          Connexion
+        </a>
+        <p>
+          Ce lien expirera dans <span style="text-decoration: underline">1 heure</span> et ne peut
+          être utilisé qu'une seule fois. Si vous n'avez pas demandé cela, veuillez ignorer cet
+          e-mail ou contacter notre équipe de support.
+        </p>
+        <p>Merci,<br />Cécile Langlois</p>
+        <p>
+          Remarque : Si vous avez des difficultés à cliquer sur le bouton, vous pouvez copier et
+          coller l'URL suivante dans votre navigateur :
+        </p>
+        <a
+          href="{{ .SiteURL }}/sign-in/validate?token_hash={{ .TokenHash }}&type=magiclink"
+          target="_blank"
+          class="truncate-url"
+        >
+          {{ .SiteURL }}/sign-in/validate?token_hash={{ .TokenHash }}&type=magiclink
+        </a>
+      </div>
+      <div class="footer">
+        <p>
+          Besoin d'aide ? Contactez-moi à
+          <a href="mailto:langlois.cecile73@gmail.com">langlois.cecile73@gmail.com</a>.
+        </p>
+        <p>
+          Cécile Langlois<br /><a href="https://cecile-langlois.com" target="_blank"
+            >https://cecile-langlois.com</a
+          ><br />
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

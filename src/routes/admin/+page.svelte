@@ -1,72 +1,74 @@
-<script lang="ts">
-  import ChevronLeft from 'lucide-svelte/icons/chevron-left';
-  import ChevronRight from 'lucide-svelte/icons/chevron-right';
+<script>
+  import {
+    TableSearch,
+    TableBody,
+    TableBodyCell,
+    TableBodyRow,
+    TableHead,
+    TableHeadCell
+  } from 'flowbite-svelte';
+  import Plus from 'lucide-svelte/icons/plus';
+  import Pencil from 'lucide-svelte/icons/pencil';
+  import Trash from 'lucide-svelte/icons/trash-2';
+  import DeleteActivityModal from '$lib/components/admin/DeleteActivityModal.svelte';
+  import AddActivityModal from '$lib/components/admin/AddActivityModal.svelte';
+
+  let deleteModal = false;
+  let newActivityModal = true;
 </script>
 
-<div class="flex min-h-screen w-screen flex-col items-center gap-y-5 bg-gray-100">
-  <h1>Page d'administration</h1>
+<DeleteActivityModal bind:open={deleteModal} activity={{ name: 'Activité 2', id: 2 }} />
+<AddActivityModal bind:open={newActivityModal} />
 
-  <div class="flex w-full flex-col items-center justify-center px-5">
-    <h2>Activitées enregistrées</h2>
-    <ul
-      role="list"
-      class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
-    >
-      <li class="relative rounded-lg bg-white p-6 shadow">
-        <div class="relative">
-          <div
-            class="aspect-h-7 aspect-w-10 group block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80"
-              alt=""
-              class="object-cover"
-            />
-          </div>
-          <button
-            type="button"
-            class="group absolute left-0 top-0 z-10 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-            on:click={() => {}}
-          >
-            <span
-              class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 group-hover:ring-2 group-hover:ring-white group-hover:ring-opacity-30"
-            >
-              <ChevronLeft class="h-4 w-4 text-white" aria-hidden="true" />
-            </span>
-            <span class="sr-only">Image précédente</span>
-          </button>
-          <button
-            type="button"
-            class="group absolute right-0 top-0 z-10 flex h-full items-center justify-center px-4 focus:outline-none"
-            on:click={() => {}}
-          >
-            <span
-              class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 group-hover:ring-2 group-hover:ring-white group-hover:ring-opacity-30"
-            >
-              <ChevronRight class="h-4 w-4 text-white" aria-hidden="true" />
-            </span>
-            <span class="sr-only">Image suivante</span>
-          </button>
-        </div>
-
-        <p class="mt-2 truncate text-sm font-medium text-gray-900">
-          <span class="text-black underline">Titre de l'activité :</span> XXXXXXXX
-        </p>
-        <span class="text-sm font-medium text-gray-900 underline">Description de l'activité :</span>
-        <p class="block h-32 overflow-y-auto text-sm font-medium text-gray-500">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel dignissim ligula.
-          Ut in nisi ut lorem scelerisque rhoncus convallis non ipsum. Cras eget aliquam est, in
-          lacinia tortor. Curabitur et magna nisl. Vivamus ante risus, placerat eget egestas quis,
-          ullamcorper vel ligula. Quisque molestie at dui non elementum. Phasellus congue egestas
-          velit, sit amet consectetur felis sollicitudin a. Mauris at felis cursus mi pretium
-          consectetur. Praesent pulvinar vehicula dui, id laoreet quam efficitur et. Fusce ut
-          dapibus dolor, vel auctor sapien. Aenean ultricies est ut vehicula finibus. Morbi
-          fermentum magna at leo laoreet, et egestas est bibendum. Aliquam sed vestibulum urna.
-        </p>
-        <p class="text-sm font-medium text-gray-900">
-          <span class="text-black underline">Prix :</span> XXX
-        </p>
-      </li>
-    </ul>
-  </div>
+<div class="min-w-screen min-h-screen bg-gray-200 p-10">
+  <section
+    class=" flex w-full flex-col gap-y-10 divide-y rounded-md border border-gray-200 bg-white p-10 shadow-md"
+  >
+    <div class="flex flex-col gap-y-10">
+      <h1 class="text-4xl">Activités enregistrées</h1>
+      <button
+        class="inline-flex w-fit items-center gap-x-2 rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+        on:click={() => (newActivityModal = true)}
+      >
+        <Plus class="-ml-0.5 h-5 w-5" aria-hidden="true" />
+        Ajouter une activité
+      </button>
+    </div>
+    <TableSearch placeholder="Rechercher une activité" striped divClass="">
+      <TableHead>
+        <TableHeadCell>Nom de l'activité</TableHeadCell>
+        <TableHeadCell>Description rapide</TableHeadCell>
+        <TableHeadCell>Description longue</TableHeadCell>
+        <TableHeadCell>Prix</TableHeadCell>
+        <TableHeadCell>Actions</TableHeadCell>
+      </TableHead>
+      <TableBody tableBodyClass="divide-y">
+        <TableBodyRow>
+          <TableBodyCell>Apple MacBook Pro 17"</TableBodyCell>
+          <TableBodyCell>Sliver</TableBodyCell>
+          <TableBodyCell>Laptop</TableBodyCell>
+          <TableBodyCell>$2999</TableBodyCell>
+          <TableBodyCell>
+            <div class="flex flex-col items-start">
+              <button
+                type="button"
+                class="inline-flex w-fit items-center gap-x-2 px-3.5 py-2.5 text-sm text-yellow-600 hover:text-yellow-500 hover:underline hover:underline-offset-4"
+              >
+                <Pencil class="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                Éditer
+              </button>
+              <button
+                type="button"
+                class="inline-flex w-fit items-center gap-x-2 px-3.5 py-2.5 text-sm text-red-600 hover:text-red-500 hover:underline hover:underline-offset-4"
+                on:click={() => (deleteModal = true)}
+              >
+                <Trash class="-ml-0.5 h-5 w-5" aria-hidden="true" />
+                Supprimer
+              </button>
+            </div>
+          </TableBodyCell>
+        </TableBodyRow>
+      </TableBody>
+    </TableSearch>
+  </section>
 </div>

@@ -1,9 +1,17 @@
 import type { ServerLoad } from '@sveltejs/kit';
-import { activities } from '$lib/database/schemas';
-import { ne } from 'drizzle-orm';
+import { activity, activityImage, carouselImage } from '$lib/database/schemas';
+import { eq, ne } from 'drizzle-orm';
 
-export const load: ServerLoad = ({ locals: { db } }) => {
+export const load: ServerLoad = async ({ locals: { db } }) => {
+  const activities = db
+    .select()
+    .from(activity)
+    .where(ne(activity.retired, false))
+    .innerJoin(activityImage, eq(activity.id, activityImage.id));
+  const carouselImgs = db.select().from(carouselImage);
+
   return {
-    activities: db.select().from(activities).where(ne(activities.retired, false))
+    carouselImgs: carouselImgs as unknown as Promise<typeof carouselImgs._.result>,
+    activities: activities as unknown as Promise<typeof activities._.result>
   };
 };

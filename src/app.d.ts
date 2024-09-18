@@ -1,25 +1,21 @@
-import type { D1Database, CacheStorage, Cache } from '@cloudflare/workers-types';
-import type { DrizzleD1Database } from 'drizzle-orm/d1';
+import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
+import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
 declare global {
   namespace App {
     // interface Error {}
     interface Locals {
-      db: DrizzleD1Database;
+      db: PostgresJsDatabase;
+      supabase: SupabaseClient;
+      safeGetSession: () => Promise<{ session: Session | null; user: User | null }>;
+      session: Session | null;
+      user: User | null;
     }
-    // interface PageData {}
+    interface PageData {
+      session: Session | null;
+    }
     // interface PageState {}
-    interface Platform {
-      env: {
-        DB: D1Database;
-      };
-      context: {
-        waitUntil(promise: Promise<any>): void;
-      };
-      caches: CacheStorage & { default: Cache };
-    }
+    // interface Platform {}
   }
 }
 
