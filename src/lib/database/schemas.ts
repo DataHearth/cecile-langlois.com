@@ -21,9 +21,12 @@ export const activity = pgTable('activity', {
   label: varchar('label', { length: 256 }).notNull(),
   quickDescription: varchar('quick_description', { length: 500 }).notNull(),
   description: text('description'),
-  date: timestamp('timestamp'),
+  startDatetime: timestamp('start_dt'),
+  endDatetime: timestamp('end_dt'),
   retired: boolean('retired').default(false),
-  pricing: numeric('pricing', { precision: 2 })
+  pricing: numeric('pricing', { precision: 2 }),
+  createdAt: timestamp('create_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at')
 });
 
 export const activityImage = pgTable('activity_image', {

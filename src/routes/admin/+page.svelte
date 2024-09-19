@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     TableSearch,
     TableBody,
@@ -12,13 +12,23 @@
   import Trash from 'lucide-svelte/icons/trash-2';
   import DeleteActivityModal from '$lib/components/admin/DeleteActivityModal.svelte';
   import AddActivityModal from '$lib/components/admin/AddActivityModal.svelte';
+  import type { PageData } from './$types';
+  import { superForm } from 'sveltekit-superforms';
+  import { zod } from 'sveltekit-superforms/adapters';
+  import { activity } from '$lib/schemas';
+
+  export let data: PageData;
+
+  const addActivityForm = superForm(data.addActivityForm, {
+    validators: zod(activity.add)
+  });
 
   let deleteModal = false;
   let newActivityModal = true;
 </script>
 
 <DeleteActivityModal bind:open={deleteModal} activity={{ name: 'Activité 2', id: 2 }} />
-<AddActivityModal bind:open={newActivityModal} />
+<AddActivityModal bind:open={newActivityModal} form={addActivityForm} />
 
 <div class="min-w-screen min-h-screen bg-gray-200 p-10">
   <section
